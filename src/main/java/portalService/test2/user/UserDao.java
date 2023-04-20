@@ -4,7 +4,10 @@ import java.sql.*;
 
 import static portalService.test2.connection.ConnectionConst.*;
 
-public class UserDao {
+public abstract class UserDao {
+
+    public abstract Connection getConnection() throws SQLException;
+
     public User findById(Long id) throws SQLException {
         Connection con = DriverManager.getConnection(URL_JEJU, USERNAME_JEJU, PASSWORD_JEJU);
         String sql = "select id,name,password from userinfo where id=?";
