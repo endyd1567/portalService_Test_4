@@ -16,8 +16,8 @@ class UserDaoTest {
         String name = "umdu";
         String password = "1234";
 
-        JejuConnectionMaker jejuConnectionMaker = new JejuConnectionMaker();
-        UserDao userDao = new UserDao(jejuConnectionMaker);
+        DaoFactory daoFactory = new DaoFactory();
+        UserDao userDao = daoFactory.userDao();
         User user = userDao.findById(1l);
 
         assertThat(user.getId()).isEqualTo(id);
@@ -35,8 +35,8 @@ class UserDaoTest {
         user.setName(name);
         user.setPassword(password);
 
-        JejuConnectionMaker jejuConnectionMaker = new JejuConnectionMaker();
-        UserDao userDao = new UserDao(jejuConnectionMaker);
+        DaoFactory daoFactory = new DaoFactory();
+        UserDao userDao = daoFactory.userDao();
         userDao.insert(user);
 
         User insertedUser = userDao.findById(user.getId());
